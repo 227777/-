@@ -1,0 +1,21 @@
+<!--pages/post/post.wxml-->
+<form bindsubmit="submitform">
+
+    <view class="box1">
+        <textarea name="content" placeholder="写下此刻的想法..."></textarea>
+    </view>
+    <view style="display:flex;flex-direction:row;margin:0 12rpx;flex-wrap: wrap;">
+        <block wx:for="{{images}}" wx:key="index">
+            <image bindtap="lookimages" data-src="{{item}}" style="width:32%;height:200rpx;margin-left:5rpx;" src="{{item}}"></image>
+        </block>
+
+        <view class="box2">
+            <block  wx:if="{{!showv}}" wx:for="{{video}}" wx:key="index">
+                <view><video src="{{item}}"></video></view>
+            </block>
+            <image wx:if="{{showv}}" bindtap="postImage" src="../../images/post.png"></image>  
+        </view>     
+    </view>
+
+    <van-button size="large" form-type="submit" icon="plus" type="primary">发表</van-button>
+</form>

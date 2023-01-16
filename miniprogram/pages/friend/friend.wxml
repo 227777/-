@@ -1,0 +1,175 @@
+<!--pages/friend/friend.wxml-->
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <view class="post" bindtap="post"><image src="../../images/post.png"></image></view>
+  <van-tab title="动态" >
+    <view wx:for="{{list}}" wx:key="index" data-content="content">
+    <!-- 大盒子 -->
+    <view class=".box">
+
+        <!-- 头像和文字 -->
+        <view class=".box1">
+
+            <!-- 头像 -->
+            <view class=".avatar">
+                <image src="{{item.avatar}}"></image>
+            </view>
+
+            <!-- 昵称和内容-->
+            <view bindtap="showDetail" data-id="{{item._id}}" data-pagesview="{{item.pagesview}}" class=".font">
+                <view class="name">{{item.nickName}}</view>
+                <view class="content"><text>{{item.content}}</text></view>
+            </view>
+
+        </view>
+
+        <!-- 视频或者配图 -->
+        <view class=".box2"> 
+            <!-- video -->
+            <view id="v" wx:if="{{item.video.length==1}}"><video src="{{item.video}}"></video></view>
+            <!-- p1~p9图片 -->
+            <view>
+                <view id="p1" wx:if="{{item.picture.length==1}}">
+                <image bindtap="lookimages" data-src="{{item.picture[0]}}" data-index="{{index}}" src="{{item.picture}}"></image>
+                </view>
+        
+                <view style="display:flex;" id="p2" wx:if="{{item.picture.length==2}}">
+                    <view wx:for="{{item.picture}}"wx:key="index">
+                        <image bindtap="lookimages" data-src="{{item}}" data-index="{{index}}" src="{{item}}"></image>
+                    </view>
+                </view>
+
+                <view style="display:flex;" id="p3" wx:if="{{item.picture.length==3}}">
+                    <view wx:for="{{item.picture}}"wx:key="index"> 
+                        <image bindtap="lookimages" data-src="{{item}}" data-index="{{index}}" src="{{item}}"> </image>               
+                    </view>     
+                </view>
+
+                <view style="display:flex;flex-wrap: wrap;" id="p45" wx:if="{{item.picture.length==4||item.picture.length==5}}" >
+                    <view wx:for="{{item.picture}}"wx:key="index"> 
+                        <image bindtap="lookimages" data-src="{{item}}" src="{{item}}"> </image>               
+                    </view>     
+                </view>
+
+                <view style="display:flex;flex-wrap: wrap;" id="p6789" wx:if="{{item.picture.length==6||item.picture.length==7||item.picture.length==8||item.picture.length==9}}" >
+                    <view wx:for="{{item.picture}}"wx:key="index"> 
+                        <image bindtap="lookimages" data-src="{{item}}" src="{{item}}"></image>               
+                    </view>     
+                </view>
+            </view>
+            <!-- 点赞 收藏 评论 -->
+            <view class=".interaction">
+                <view class=".like">
+                    <view bindtap="interactiveP" data-id="{{item._id}}" class=".interactiveP">                    
+                        <image wx:if="{{show1}}" src="../../images/like.png"></image>
+                        <image wx:if="{{!show1}}" src="../../images/like3.png"></image>
+                    </view>
+                    <view class=".interactiveN">
+                        <view wx:if="{{item.prizelist}}">{{item.prizelist.length}}</view>
+                        <view wx:if="{{!item.prizelist}}">0</view>      
+                    </view>                              
+                </view>
+
+                <view class=".comment">
+                    <view class=".interactiveP">                    
+                        <image src="../../images/comment.png"></image>
+                    </view>    
+                    <view class=".interactiveN">
+                        <view wx:if="{{item.commentlist}}">{{item.commentlist.length}}</view>
+                        <view wx:if="{{!item.commentlist}}">0</view>
+                    </view>                       
+                </view>
+
+                <view class=".collect">
+                    <view class=".interactiveP">                    
+                        <image wx:if="{{show2}}" src="../../images/collect.png"></image>
+                        <image wx:if="{{!show2}}" src="../../images/collect2.png"></image>
+                    </view>         
+                    <view class=".interactiveN">
+                        <view wx:if="{{item.collectlist}}">{{item.collectlist.length}}</view>
+                        <view wx:if="{{!item.collectlist}}">0</view>
+                    </view>                  
+                </view>
+            </view>
+            <!--浏览-->
+            <view class="time">
+            <view>浏览:<text>{{item.pagesview}}</text></view>        
+            </view>
+            <!-- 时间 -->
+            <view class="time">{{item.time}}</view>
+     </view>
+
+    </view>
+
+    </view>
+  </van-tab>
+  <van-tab title="热门" >
+    <view wx:for="{{list}}" wx:key="index" data-content="content" wx:if="{{item.pagesview>=50}}">
+    <!-- 大盒子 -->
+    <view class=".box">
+
+        <!-- 头像和文字 -->
+        <view class=".box1">
+
+            <!-- 头像 -->
+            <view class=".avatar">
+                <image src="{{item.avatar}}"></image>
+            </view>
+
+            <!-- 昵称和内容-->
+            <view bindtap="showDetail" data-id="{{item._id}}" data-pagesview="{{item.pagesview}}" class=".font">
+                <view class="name">{{item.nickName}}</view>
+                <view class="content">{{item.content}}</view>
+            </view>
+
+        </view>
+
+        <!-- 视频或者配图 -->
+        <view class=".box2"> 
+            <!-- video -->
+            <view id="v" wx:if="{{item.video}}"><video src="{{item.video}}"></video></view>
+            <!-- p1~p9图片 -->
+            <view>
+                <view id="p1" wx:if="{{item.picture.length==1}}">
+                <image src="{{item.picture}}"></image>
+                </view>
+        
+                <view style="display:flex;" id="p2" wx:if="{{item.picture.length==2}}">
+                    <view wx:for="{{item.picture}}"wx:key="index">
+                        <image src="{{item}}"></image>
+                    </view>
+                </view>
+
+                <view style="display:flex;" id="p3" wx:if="{{item.picture.length==3}}">
+                    <view wx:for="{{item.picture}}"wx:key="index"> 
+                        <image src="{{item}}"> </image>               
+                    </view>     
+                </view>
+
+                <view style="display:flex;flex-wrap: wrap;" id="p45" wx:if="{{item.picture.length==4||item.picture.length==5}}" >
+                    <view wx:for="{{item.picture}}"wx:key="index"> 
+                        <image src="{{item}}"> </image>               
+                    </view>     
+                </view>
+
+                <view style="display:flex;flex-wrap: wrap;" id="p6789" wx:if="{{item.picture.length==6||item.picture.length==7||item.picture.length==8||item.picture.length==9}}" >
+                    <view wx:for="{{item.picture}}"wx:key="index"> 
+                        <image src="{{item}}"></image>               
+                    </view>     
+                </view>
+            </view>
+            <!-- 点赞-->
+            <view class="time">
+            <view>浏览:<text>{{item.pagesview}}</text></view>        
+            </view>
+            <!-- 时间 -->
+            <view class="time">{{item._createTime}}</view>
+     </view>
+
+    </view>
+
+</view>
+  </van-tab>
+</van-tabs>
+
+
+

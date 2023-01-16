@@ -1,0 +1,155 @@
+/* pages/friend/friend.wxss */
+/* box-box1 */
+.box1 {
+    display: flex;
+    flex-direction: row;
+    margin: 10rpx;
+}
+
+.box1 view {
+    margin-bottom: 100rpx;
+}
+
+.avatar image {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 30%;
+}
+
+.name {
+    color: red;
+    font-size: large;
+}
+
+.font {
+    font-size: small;
+}
+
+.font view {
+    margin-bottom: 0;
+}
+
+/* box-box2 */
+.box2 image,
+.box2 video {
+    margin-left: 100rpx;
+    margin-top: -90rpx;
+    margin-bottom: 100rpx;
+}
+
+#p2 image {
+    width: 300rpx;
+    height: 300rpx;
+    margin-right: -90rpx;
+}
+
+#p3 image,
+#p6789 image {
+    width: 200rpx;
+    height: 220rpx;
+    margin-right: -90rpx;
+}
+
+#p45 image {
+    width: 300rpx;
+    height: 200rpx;
+    margin-right: -90rpx;
+    margin-bottom: 92rpx;
+}
+
+.box2 video,
+#p1 image {
+    width: 620rpx;
+    height: 350rpx;
+}
+
+.time {
+    color: #808080;
+    font-size: 9pt;
+    margin-left: 100rpx;
+    margin-top: -90rpx;
+    margin-bottom: 100rpx;
+}
+
+.time text {
+    color: #5555ff;
+}
+
+.interaction {
+    display: flex;
+    flex-direction: row;
+}
+
+.interaction image {
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.like,
+.collect,
+.comment {
+    margin-left: 100rpx;
+    text-align: center;
+}
+
+.interactiveP {
+    margin-left: -100rpx;
+}
+
+.interactiveN {
+    margin-top: -100rpx;
+    margin-bottom: 100rpx;
+}
+
+.popup van-search
+{
+    position: fixed;
+    bottom:0;
+    width: 100%;
+}
+.popup .text
+{
+    text-align: center;
+    font-size: small;
+}
+.commentBlock
+{
+    display: flex; 
+    flex-direction: row;
+    margin-bottom: 30rpx;
+}
+.commentP image
+{
+    width:80rpx;
+    height:80rpx;
+    border-radius: 30%;
+}
+.commentC
+{
+    display: flex;
+    flex-direction: column;
+
+}
+.comment2
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+.commentN
+{
+    font-size: 30rpx;
+}
+.lastComment
+{
+    height: 185rpx;
+    font-size: small;
+    color:#A9a9a9 ;
+}
+.lastComment text
+{
+    position: relative;
+    left:40%;
+}

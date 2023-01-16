@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/my/my",
+    "pages/friend/friend",
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/post/post"
+  ],
+  "window": {
+    "enablePullDownRefresh":true,
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor":"#228b22",
+    "navigationBarTitleText": "朋友圈",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+      "backgroundColor": "#32cd32",
+      "list": [
+    {
+        "pagePath": "pages/friend/friend",
+        "text": "动态",
+        "iconPath": "images/friend.png",
+        "selectedIconPath": "images/friend1.png"
+    } ,
+    {
+        "pagePath":  "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my1.png"
+   }
+]
+  },
+  "sitemapLocation": "sitemap.json",
+
+  "usingComponents": {
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}

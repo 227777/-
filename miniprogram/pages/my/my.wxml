@@ -1,0 +1,16 @@
+<view class=".box1">
+    <image src="{{avatarUrl}}"></image>
+    <text>\n{{nickName}}</text>
+    <view wx:if="{{denglu}}" bindtap="signOut" class=".signOut"><text>退出登录</text></view>
+</view>
+
+<button wx:if="{{!denglu}}" style="width:100%;"size="default"type="primary" bindtap="getuserInfo">授权登录</button>
+
+<view><text style="color:red">个人功能:</text></view>
+
+<view class=".box2">
+    <view> <image src="../../images/like2.png"></image> <text>\n我的点赞</text></view>
+    <view> <image src="../../images/love.png"></image> <text>\n我的收藏</text></view>
+    <view> <image src="../../images/friend.png"></image> <text>\n我的发表</text></view>
+</view>
+

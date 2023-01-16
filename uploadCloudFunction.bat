@@ -1,0 +1,1 @@
+"D:\weixin开发项目\微信web开发者工具\cli.bat" cloud functions deploy --e music-1gzf7qihc57085d6 --n quickstartFunctions --r --project "D:\weixin开发项目\朋友圈" --report_first --report

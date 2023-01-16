@@ -1,0 +1,133 @@
+<view>
+    <!-- 大盒子 -->
+    <view class=".box">
+        <!-- 头像和文字 -->
+        <view class=".box1">
+
+            <!-- 头像 -->
+            <view class=".avatar">
+                <image src="{{list.avatar}}"></image>
+            </view>
+
+            <!-- 昵称和内容-->
+            <view bindtap="showDetail" data-item="{{item}}" class=".font">
+                <view class="name">{{list.nickName}}</view>
+                <view class="content">{{list.content}}</view>
+            </view>
+
+        </view>
+
+        <!-- 视频或者配图 -->
+    <view class=".box2"> 
+        <!-- video -->
+        <view id="v" wx:if="{{list.video.length==1}}"><video src="{{list.video}}"></video></view>
+        <!-- p1~p9图片 -->
+        <view >
+            <view  id="p1" wx:if="{{list.picture.length==1}}" wx:for="{{list.picture}}" wx:key="index">
+            <image bindtap="lookimages" data-src="{{item}}" src="{{item}}"></image>
+            </view>
+     
+            <view style="display:flex;" id="p2" wx:if="{{list.picture.length==2}}">
+                <view wx:for="{{list.picture}}"wx:key="index">
+                    <image bindtap="lookimages" data-src="{{item}}" src="{{item}}"></image>
+                </view>
+            </view>
+
+            <view style="display:flex;" id="p3" wx:if="{{list.picture.length==3}}">
+                <view wx:for="{{list.picture}}"wx:key="index"> 
+                    <image bindtap="lookimages" data-src="{{item}}" src="{{item}}"> </image>               
+                </view>     
+            </view>
+
+            <view style="display:flex;flex-wrap: wrap;" id="p45" wx:if="{{list.picture.length==4||list.picture.length==5}}" >
+                <view wx:for="{{list.picture}}"wx:key="index"> 
+                    <image bindtap="lookimages" data-src="{{item}}" src="{{item}}"> </image>               
+                </view>     
+            </view>
+
+            <view  style="display:flex;flex-wrap: wrap;" id="p6789" wx:if="{{list.picture.length==6||list.picture.length==7||list.picture.length==8||list.picture.length==9}}" >
+                <view wx:for="{{list.picture}}"wx:key="index"> 
+                    <image bindtap="lookimages" data-src="{{item}}" src="{{item}}"></image>               
+                </view>     
+            </view>
+
+              <!-- 点赞 收藏 评论 -->
+              <view class=".interaction">
+                <view class=".like">
+                    <view bindtap="interactiveP" data-id="{{item._id}}" class=".interactiveP">                    
+                        <image wx:if="{{show1}}" src="../../images/like.png"></image>
+                        <image wx:if="{{!show1}}" src="../../images/like3.png"></image>
+                    </view>
+                    <view class=".interactiveN">
+                        <view wx:if="{{list.prizelist}}">{{list.prizelist.length}}</view>
+                        <view wx:if="{{!list.prizelist}}">0</view>      
+                    </view>                              
+                </view>
+
+                <view class=".comment">
+                    <view class=".interactiveP" bindtap="showPopup">                    
+                        <image src="../../images/comment.png"></image>
+                    </view>    
+                    <view class=".interactiveN">
+                        <view wx:if="{{list.commentlist}}">{{list.commentlist.length}}</view>
+                        <view wx:if="{{!list.commentlist}}">0</view>
+                    </view>                       
+                </view>
+
+                <view class=".collect">
+                    <view class=".interactiveP" bindtap="interactiveP2">                    
+                        <image wx:if="{{show2}}" src="../../images/collect.png"></image>
+                        <image wx:if="{{!show2}}" src="../../images/collect2.png"></image>
+                    </view>         
+                    <view class=".interactiveN">
+                        <view wx:if="{{list.collectlist}}">{{list.collectlist.length}}</view>
+                        <view wx:if="{{!list.collectlist}}">0</view>
+                    </view>                  
+                </view>
+            </view>
+            <!--浏览-->
+            <view class="time">
+            <view>浏览:<text>{{list.pagesview}}</text></view>        
+            </view>
+            <!-- 时间 -->
+            <view class="time">{{list._createTime}}</view>
+        </view>
+
+     </view>
+
+    </view>
+    
+    <van-cell title="展示弹出层" is-link bind:click="showPopup" />
+    <van-popup position="bottom" custom-style="height: 50%;" round show="{{ show }}" bind:close="onClose">
+
+        <view class=".popup">
+            <view class="text" wx:if="{{!list.commentlist}}">共0条评论</view>
+            <view class="text" wx:if="{{list.commentlist}}">共{{list.commentlist.length}}条评论</view>
+            
+         
+        <view wx:if="{{!list.commentlist}}" class="mainComment">main</view>      
+<!-- 评论内容 -->
+        <view wx:if="{{list.commentlist}}">   
+            <view wx:for="{{list.commentlist}}" class="commentBlock" wx:key="*this">
+                <view class="commentP">
+                    <image src="{{item.avatarUrl}}"></image>
+                </view>
+                 <view class="commentC">
+                     <view class="commentN">{{item.nickName}}</view>
+                     <view class="comment2">{{item.comment}}</view>
+                 </view>
+            
+             </view>
+        </view>
+            
+            <view class="lastComment">
+            <text>没有评论了</text></view>
+
+            <van-search value="{{ value }}" left-icon="none" action-text="发送" placeholder="留下你的精彩评论吧!" show-action bindchange="getComment" bind:search="onSearch" bind:cancel="onCancel"/>
+        </view>
+
+    </van-popup>
+
+</view>
+
+
